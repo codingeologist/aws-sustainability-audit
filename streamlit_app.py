@@ -1,16 +1,8 @@
+"""Streamlit Module"""
 import pandas as pd
 import streamlit as st
 import matplotlib.pyplot as plt
 from sustainability.database import Database
-from sustainability.reports import Emissions
-from sustainability.utils import DateTimeEncoder
-
-
-def add_data():
-
-    emissions = Emissions()
-    carbon_data = emissions.get_carbon(start_year=2023, end_year=2027)
-    emissions.data_transform(data=carbon_data)
 
 
 db = Database(db_path="aws_carbon_emissions.db")

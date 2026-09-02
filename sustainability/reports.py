@@ -1,10 +1,12 @@
+"""Report Module"""
+from datetime import datetime
 import boto3
 import pandas as pd
-from datetime import datetime
 from sustainability.database import Database
 
 
 class Emissions:
+    """emissions report class"""
 
     def __init__(self) -> None:
 
@@ -15,10 +17,12 @@ class Emissions:
 
 
     def get_account(self) -> None:
+        """get aws account id"""
 
         self.account_id = boto3.client("sts").get_caller_identity().get("Account")
 
     def get_carbon(self, start_year: int, end_year: int):
+        """get carbon emissions report"""
 
         response = self.client.get_estimated_carbon_emissions(
             TimePeriod={
@@ -34,10 +38,12 @@ class Emissions:
             return response["Results"]
         else:
             status_code = response["ResponseMetadata"]["HTTPStatusCode"]
-            raise ConnectionError(f"Unable to retrieve carbon emission estimates with status code: {status_code}")
+            raise ConnectionError(
+                f"Unable to retrieve carbon emission estimates with status code: {status_code}")
 
 
-    def data_transform(self, data: dict, account_id: str = ""):
+    def data_transform(self, data: dict):
+        """transform data"""
 
         self.get_account()
         cols = {

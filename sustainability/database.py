@@ -1,8 +1,10 @@
+"""Database Module"""
 import duckdb
 import pandas as pd
 
 
 class Database:
+    """Database Connection"""
 
     def __init__(self, db_path: str = ":memory:") -> None:
 
@@ -11,6 +13,7 @@ class Database:
 
 
     def create_table(self, name: str, df: pd.DataFrame):
+        """create emissions table"""
 
         self.conn.register(f"{name}_df", df)
         self.conn.execute(
@@ -31,6 +34,7 @@ class Database:
 
 
     def read_table(self, name: str) -> pd.DataFrame:
+        """read a specified table name"""
 
         query = f"SELECT * FROM {name}"
         return self.conn.execute(query).fetchdf()

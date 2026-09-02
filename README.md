@@ -16,7 +16,7 @@ export AWS_PROFILE=[profile-name] && aws sso login && python3 main.py
 
 Run the Streamlit app with:
 ```bash
-streamlin run streamlit_app.py
+streamlit run streamlit_app.py
 ```
 
 This repo is a work in progress watch this space 👁😜
