@@ -11,6 +11,8 @@ df["start_date"] = pd.to_datetime(df["start_date"])
 df["end_date"] = pd.to_datetime(df["end_date"])
 accounts = df["account_id"].unique()
 
+st.title("AWS Account Emissions Report 🌱")
+
 with st.sidebar:
     st.header("Account Selector ☁️")
     selected_accounts = st.multiselect(
@@ -22,17 +24,22 @@ with st.sidebar:
 
 if selected_accounts:
     filtered_df = df[df["account_id"].isin(selected_accounts)]
+    if len(selected_accounts) == 1:
+        st.write(f"Account ID: {selected_accounts[0]}")
+    else:
+        st.write(f"Account IDs: {', '.join(selected_accounts)}")
+        st.write("No account selected, showing data from all accounts")
 else:
-    filtered_df = df.copy()
-
-st.title("AWS Account Emissions Report 🌱")
-
-if len(selected_accounts) == 1:
-    st.write(f"Account ID: {selected_accounts[0]}")
-elif len(selected_accounts) > 1:
-    st.write(f"Account IDs: {', '.join(selected_accounts)}")
-else:
-    st.write("No account selected, showing data from all accounts")
+    filtered_df = (
+        df.groupby(["start_date", "end_date", "region", "model", "unit"])
+        .agg({
+            "total_lbm_emissions": "sum",
+            "total_mbm_emissions": "sum"
+        })
+        .reset_index()
+    )
+    filtered_df.insert(0, "account_id", "aggregated")
+    st.write("Showing aggregated data from all accounts")
 
 st.dataframe(data=filtered_df, width="stretch", height="auto", hide_index=True)
 
