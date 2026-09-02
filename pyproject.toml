@@ -1,0 +1,19 @@
+[project]
+name = "AWS Sustainability Audit"
+version = "2026.9.1"
+dependencies = [
+	"boto3>=1.43.85",
+	"pandas>=3.0.5",
+	"duckdb>=1.5.5",
+	"matplotlib>=3.11.1"
+	"streamlit>=1.63.0"
+]
+requires-python = ">=3.14"
+authors = [
+	{ name = "codingeologist", email = "coding.geologist@gmail.com" }
+]
+maintainers = [
+	{ name = "codingeologist", email = "coding.geologist@gmail.com" }
+]
+description = "AWS Sustainability Audit"
+readme = "README.md"
