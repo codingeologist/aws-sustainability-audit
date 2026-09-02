@@ -1,2 +1,29 @@
 [client]
-showSidebarNavigation = false
+showSidebarNavigation = true
+
+[theme]
+font = "sans serif"
+
+[theme.light]
+primaryColor = "#4ECDC4"
+backgroundColor = "#FFFFFF"
+secondaryBackgroundColor = "#F5F7FA"
+textColor = "#333333"
+
+[theme.light.sidebar]
+primaryColor = "#4ECDC4"
+backgroundColor = "#e4dbdbff"
+secondaryBackgroundColor = "#F5F7FA"
+textColor = "#333333"
+
+[theme.dark]
+primaryColor = "#4ECDC4"
+backgroundColor = "#0E1117"
+secondaryBackgroundColor = "#1E1E1E"
+textColor = "#FAFAFA"
+
+[theme.dark.sidebar]
+primaryColor = "#4ECDC4"
+backgroundColor = "#161B22"
+secondaryBackgroundColor = "#1E1E1E"
+textColor = "#FAFAFA"

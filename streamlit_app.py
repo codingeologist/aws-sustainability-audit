@@ -3,6 +3,8 @@ import pandas as pd
 import streamlit as st
 import plotly.express as px
 from sustainability.database import Database
+from sustainability.utils import theming
+theming()
 
 
 db = Database(db_path="aws_carbon_emissions.db")
@@ -18,7 +20,7 @@ with st.sidebar:
     selected_accounts = st.multiselect(
         "Select Account(s)",
         options=accounts,
-        default=accounts[0] if len(accounts) > 0 else None,
+        default=None,
         help="Filter the report by one or more AWS Account IDs."
     )
 
@@ -28,7 +30,7 @@ if selected_accounts:
         st.write(f"Account ID: {selected_accounts[0]}")
     else:
         st.write(f"Account IDs: {', '.join(selected_accounts)}")
-        st.write("No account selected, showing data from all accounts")
+
 else:
     filtered_df = (
         df.groupby(["start_date", "end_date", "region", "model", "unit"])
@@ -122,7 +124,8 @@ if len(filtered_df) > 0:
     fig2.update_layout(
         showlegend=True,
         height=600,
-        width=800
+        width=1200,
+        margin=dict(l=20, r=20, t=50, b=20)
     )
 
     st.plotly_chart(fig2, width="stretch")
