@@ -1,4 +1,5 @@
 """Main CLI Module"""
+import argparse
 from sustainability.reports import Emissions
 from sustainability.utils import export_data
 
@@ -21,6 +22,33 @@ def export(filename: str):
     )
 
 
+def main():
+    """main loop"""
+
+    parser = argparse.ArgumentParser(
+        prog="AWS Sustainability Reporter",
+        description="Download Sustainability Reports from an AWS Account"
+    )
+
+    parser.add_argument(
+        "-a",
+        "--add",
+        help="add sustainability data from an authenticated AWS account to the local database"
+    )
+    parser.add_argument(
+        "-e",
+        "--export",
+        type=str,
+        help="export the database to a named file"
+    )
+    args = parser.parse_args()
+
+    if args.export:
+        export(filename=f"{args.export}.csv")
+    elif args.add:
+        add_data()
+
+
 if __name__ == "__main__":
 
-    add_data()
+    main()
