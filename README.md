@@ -5,7 +5,7 @@ This repo utilises the [AWS CLI](https://aws.amazon.com/cli/) and [AWS SDK](http
 Install dependencies:
 ```bash
 uv venv venv
-uv pip install boto3 pandas duckdb matplotlib streamlit
+uv pip install boto3 pandas duckdb plotly streamlit
 ```
 
 Export AWS emissions data for every Account with:
