@@ -25,8 +25,8 @@ st.markdown(
 )
 
 with st.sidebar:
-    st.page_link("streamlit_app.py", label="AWS Sustainability Audit", icon="☁️")
-    st.page_link("pages/emissions_report.py", label="AWS Account Emissions Report", icon="🌱")
+    st.page_link("streamlit_app.py", label="AWS Sustainability Audit", icon="🌱")
+    st.page_link("pages/emissions_report.py", label="AWS Account Emissions Report", icon="☁️")
     st.divider()
     st.header("Account Selector ☁️")
     selected_accounts = st.multiselect(
